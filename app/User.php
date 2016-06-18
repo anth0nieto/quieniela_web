@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace quiniela;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -11,16 +11,20 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'nombre','apellido', 'cedula', 'fecha_nacimiento', 'username', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($valor){
+        if(!empty($valor)){
+            $this->attributes['password'] = \Hash::make($valor);
+        }
+    }
 }
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace quiniela\Events;
 
 abstract class Event
 {

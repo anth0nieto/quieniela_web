@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace quiniela\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

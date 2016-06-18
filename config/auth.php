@@ -15,7 +15,8 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'users', //Lineaaa que yo comente
+        //'passwords' => 'admins',  //LInea que yo agregue  
     ],
 
     /*
@@ -38,12 +39,15 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            //'provider' => 'admins',
+            'provider' => 'users',  //default users
         ],
 
+        
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            //'provider' => 'admins',
+            'provider' => 'users',  //defaul users
         ],
     ],
 
@@ -65,10 +69,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        
+            'users' => [        //default users
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => quiniela\User::class,
         ],
+
+       
+        
 
         // 'users' => [
         //     'driver' => 'database',
@@ -96,12 +104,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'admins' => [        //defaul users
             'provider' => 'users',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
         ],
+
+        
     ],
 
 ];

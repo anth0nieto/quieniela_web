@@ -3,7 +3,7 @@
 	@section('content')
 	
 	@include('alerts.request')
-
+	
 		{!!Form::model($admin,['route'=>['admin.update',$admin->id],'method'=>'PUT'])!!}
 		
 		@include('admin.forms.usr')

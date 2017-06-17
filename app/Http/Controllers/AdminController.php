@@ -10,6 +10,7 @@ use quiniela\Http\Requests\AdminUpdateRequest;
 use quiniela\Http\Requests\AdminLoginRequest;
 use quiniela\Http\Controllers\Controller;
 use quiniela\Admin;
+use quiniela\User;
 use Session;
 use Redirect;
 
@@ -24,6 +25,8 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['only' => ['index', 'create','edit','updadte','destroy']]);
+
     }
 
     public function index()
@@ -50,7 +53,7 @@ class AdminController extends Controller
      */
     public function store(AdminCreateRequest $request)
     {
-        Admin::create([
+        User::create([
             'nombre' => $request['nombre'],
             'apellido' => $request['apellido'],
             'cedula' => $request['cedula'],
@@ -59,6 +62,8 @@ class AdminController extends Controller
             'email' => $request['email'],
             'password' => $request['password'],
         ]);
+
+        Admin::create(['username' => $request['username'],]);
 
         Session::flash('message-success','Usuario creado exitosamente');
         return redirect('/admin');
@@ -84,7 +89,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = Admin::find($id);
+        $admin = User::find($id);
         return view('admin.edit',['admin'=>$admin]);
     }
 
@@ -97,11 +102,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin = Admin::find($id);
+        $admin = User::find($id);
         $admin->fill($request->all());
-        $admin->save();
-        Session::flash('message-success','Usuario Actualizado Correctamente');
-        return Redirect::to('/admin');
+        $admin->fill($request->all());
+         $admin->save();
+         Session::flash('message-success','Usuario Actualizado Correctamente');
     }
 
     /**
@@ -112,7 +117,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Admin::destroy($id);
+        User::destroy($id);
         Session::flash('message-success','Usuario Eliminado Correctamente');
         return Redirect::to('/admin');
     }

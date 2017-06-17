@@ -34,7 +34,7 @@
 
 				<li>
 					{!!Form::open(['route'=>['userquiniela.destroy', $user->id], 'method' => 'DELETE'])!!}
-					{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
+					{!!Form::submit('Eliminar',['class'=>'btn btn-danger', 'disabled'=>'true'])!!}
 					{!!Form::close()!!}
 				</li>
 				</ul>

@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Quiniela Admin</a>
+                <a  class="navbar-brand" href="index.html">Quiniela Admin</a>
             </div>
            
 
@@ -53,18 +53,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Administradores<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{!! URL::to('/admin/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
-                                </li>
-                                <li>
-                                    <a href="{!! URL::to('/admin') !!}"><i class='fa fa-list-ol fa-fw'></i> Administradores</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-film fa-fw"></i> Quinielas<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-futbol-o fa-fw"></i> Quinielas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{!! URL::to('/quiniela/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar Quiniela</a>
@@ -74,10 +63,42 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-bell"></i> Creditos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{!! URL::to('/gestionCreditos') !!}"><i class='fa fa-list-ol fa-fw'></i> Creditos Pendientes</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-bell"></i> Pagos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{!! URL::to('/gestionPagos') !!}"><i class='fa fa-list-ol fa-fw'></i> Pagos Pendientes</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Administradores<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{!! URL::to('/admin/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/admin') !!}"><i class='fa fa-list-ol fa-fw'></i>Administradores</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{!! URL::to('/showQuinielas') !!}"><i class='fa fa-play fa-fw'></i>Jugar</a>
+                        </li>
 
                     </ul>
                 </div>
             </div>
+
+            
 
      </nav>
 

@@ -24,9 +24,9 @@ class AdminCreateRequest extends Request
             'apellido' => 'required',
             'cedula' => 'required',
             'fecha_nacimiento' => 'required',
-            'username' => 'required|unique:admins',
+            
             'username' => 'required|unique:users',
-            'email' => 'required|unique:admins',
+            
             'email' => 'required|unique:users',
             'email' => 'required|email',
             'password' => 'required',

@@ -59,15 +59,24 @@
                                     <a href="{!! URL::to('/equipo/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
                                 </li>
                                 <li>
+                                    <a href="{!! URL::to('create_solo') !!}"><i class='fa fa-plus fa-fw'></i>Agregar Solo</a>
+                                </li>
+                                <li>
                                     <a href="{!! URL::to('/equipo') !!}"><i class='fa fa-list-ol fa-fw'></i> Listar</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bank fa-fw"></i> Partidos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partidos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{!! URL::to('/partido/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    <a href="{!! URL::to('/partido/create') !!}"><i class='fa fa-plus fa-fw'></i> Fase Grupo</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/agregar') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                </li>
+                                <li>
+                                    <a href="{!! URL::to('/agregar_directo') !!}"><i class='fa fa-plus fa-fw'></i> Agregar Directo</a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('/partido') !!}"><i class='fa fa-list-ol fa-fw'></i> Listar</a>
@@ -76,7 +85,7 @@
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-life-saver fa-fw"></i> Resultados<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-futbol-o fa-fw"></i> Resultados<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{!! URL::to('/resultado_A/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
@@ -89,8 +98,17 @@
 
                         <li>
                           
-                            <a href="{!! URL::to('/posicion') !!}"><i class='fa fa-database fa-fw'></i> Posiciones</a>
+                            <a href="{!! URL::to('/posicion') !!}"><i class='fa fa-history fa-fw'></i> Posiciones</a
                 
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-smile-o" aria-hidden="true"></i> Personas Inscritas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{!! URL::to('/showUsersRegistered') !!}"><i class='fa fa-list-ol fa-fw'></i> Listar</a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li>

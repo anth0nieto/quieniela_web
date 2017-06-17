@@ -17,6 +17,7 @@ class CreateResultadoAdminsTable extends Migration
             $table->integer('goles_local');
             $table->integer('goles_visitante');
             $table->integer('id_quiniela');
+            $table->integer('fase');
             $table->timestamps();
         });
     }

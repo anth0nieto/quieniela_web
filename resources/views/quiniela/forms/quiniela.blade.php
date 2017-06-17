@@ -1,43 +1,85 @@
 <br><br>
-		<div class="form-group">
-			{!!Form::label('Nombre:')!!}
-			{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el nombre de la Quiniela'])!!}
-		</div>
+<div class="row col-wrap">
+<div class="col-sm-8 col">
+
+<div class="well">
+ 
+     <fieldset>
+ 
+        <legend>Nueva Quiniela</legend>
+ 
+
+        <div class="form-group">
+            {!! Form::label('nombret', 'Nombre:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+           	 {!! Form::text('nombre',null,['class'=>'form-control', 'placeholder'=>'Ingresa el nombre del Torneo']) !!}
+            </div>
+        </div>
+
+<br><br>
+	<div class="form-group">
+            {!! Form::label('costo', 'Costo:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+           	 {!! Form::text('costo',null,['class'=>'form-control', 'placeholder'=>'Ingresa el costo de Inscripción']) !!}
+            </div>
+        </div>
+
+       
+
+<br><br>
+    <div class="form-group">
+            {!! Form::label('tipo_quiniela', 'Tipo Quiniela:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+             {!! Form::select('tipo_quiniela', array('torneo' => 'Torneo', 'liga' => 'Liga')) !!}
+            </div>
+        </div>
+
+<br><br>
+    <div class="form-group">
+            {!! Form::label('horaIni', 'Hora Inicio:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+             {!! Form::date('horaInicio',null,['class'=>'form-control', 'placeholder'=>'Hora en la cual inicia el torneo 00:00:00']) !!}
+            </div>
+    </div>
+
+       
+
+<br><br>
+	<div class="form-group">
+            {!! Form::label('fechat', 'Fecha de Inicio:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+           	 {!! Form::date('fecha_inicio',null,['class'=>'form-control', 'placeholder'=>'Fecha en la cual inicia el torneo AAAA-MM-DD']) !!}
+            </div>
+        </div>
+
+<br><br>
+	<div class="form-group">
+            {!! Form::label('fechaf', 'Fecha de Finalizacion:', ['class' => 'col-lg-4 control-label']) !!}
+            <div class="col-lg-8">
+           	 {!! Form::date('fecha_finalizacion',null,['class'=>'form-control', 'placeholder'=>'Fecha en la cual finaliza el torneo AAAA-MM-DD']) !!}
+            </div>
+        </div>
+
+<br><br>
 
 		<div class="form-group">
-			{!!Form::label('Costo:')!!}
-			{!!Form::text('costo',null,['class'=>'form-control','placeholder'=>'Ingresa el monto a pagar'])!!}
+			{!! Form::label('fechaf', 'Minimo de Usuarios:', ['class' => 'col-lg-4 control-label']) !!}
+			 <div class="col-lg-8">
+			{!!Form::number('usuarios', '10')!!}
 		</div>
 
-
+<br><br>
 		<div class="form-group">
-			{!!Form::label('Minimo de Usuarios:')!!}
-			{!!Form::number('usuarios', '50')!!}
-		</div>
-
-		<div class="form-group">
-			{!!Form::label('Numero de Ganadores:')!!}
-			{!!Form::selectRange('ganadores', 1, 10, 3)!!}
-		</div>
-
-		<div class="form-group">
-			{!!Form::label('Competición:')!!}
-			{!!Form::select('torneo_liga',array('torneo' => ' Torneo ', 'liga' => ' Liga '), 'torneo')!!}
-		</div>
-
-		<div class="form-group">
-			{!!Form::label('Fecha de Inicio:')!!}
-			{!!Form::date('f_inicio',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha en la cual arranca '])!!}
+			{!! Form::label('fechaf', 'Número de Ganadores:', ['class' => 'col-lg-4 control-label']) !!}
+			 <div class="col-lg-8">
+			{!!Form::number('ganadores', '1')!!}
 		</div>
 
 
-		<div class="form-group">
-			{!!Form::label('Fecha de Oferta:')!!}
-			{!!Form::date('f_oferta',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'Ingresa la fecha de oferta al publico '])!!}
-		</div>
+    </fieldset>
+ 
+  
+</div>
+</div>
+</div>
 
-
-		<div class="form-group">
-			{!!Form::label('Fecha de Inscripción:')!!}
-			{!!Form::date('f_inscripcion',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha tope de inscripción '])!!}
-		</div>

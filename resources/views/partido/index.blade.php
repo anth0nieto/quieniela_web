@@ -12,23 +12,26 @@
 	
 	<table class="table ">
 		<thead>
-			<th>ID Partido</th>
+			<th>Id Quiniela</th>
 			<th>ID Local</th>
 			<th>ID Visitante</th>
 			<th>Fecha</th>
+			<th>Fase</th>
+			<th>Operación</th>
 		</thead>
 		
 		@foreach($partidos as $partido)
 
 		@if($partido->id_quiniela == $id_quin)
 			<tbody>
-				<td>{{$partido->id_partido}}</td>
+				<td>{{$partido->id_quiniela}}</td>
 				<td>{{$partido->id_local}}</td>
 				<td>{{$partido->id_visitante}}</td>
 				<td>{{$partido->fecha}}</td>
+				<td>{{$partido->fase_grupo}}</td>
 				<td>	
 
-				{!!link_to_route('partido.edit', $title = 'Editar', $parameters = $partido->id_partido, $attributes = ['class'=>'btn btn-primary']);!!}
+				{!!link_to_route('partido.edit', $title = 'Editar', $parameters = $partido->id_local.$partido->id_visitante.$partido->fecha, $attributes = ['class'=>'btn btn-primary']);!!}
 				
 				</td>
 			</tbody>

@@ -54,21 +54,28 @@ class LogController extends Controller
 
         if(Auth::attempt(['username'=>$request['username'], 'password'=>$request['password']]))
         {
-            
-            if($request['username'] == "anth0nieto")
+             $adminTrue = DB::table('admins')
+                            ->select('admins.username')
+                            ->where('admins.username', '=',$request['username'])
+                            ->get();
+
+            if(sizeof($adminTrue) > 0)
             {
                 Session::flash('message-success','Bienvenido');
-                return Redirect::to('admin');
+                 return Redirect::to('quiniela');
             }
 
-            Session::flash('message-success','Bienvenido');
-            return Redirect::to('/showQuinielas');
-            
+            else    
+           {
+                Session::flash('message-success','Bienvenido');
+                return Redirect::to('/showQuinielas');
+            }
+                        
         }
 
         else
         {
-            Session::flash('message-error','Datos son incorrectos');
+            Session::flash('message-error','Datos Incorrectos');
             return Redirect::to('/');
         }
 

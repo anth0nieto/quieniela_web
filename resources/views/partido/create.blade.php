@@ -6,8 +6,16 @@
 
 {!!Form::open(['route'=>'partido.store','method'=>'POST'])!!}
 
+<br>
+<div class="row col-wrap">
+<div class="col-sm-12 col">
+<div class="well">
+ 
+     <fieldset>
+         <legend>Ingresar Partidos</legend>
 
-
+<div class="row col-wrap">
+<div class="col-sm-9 col">
 <div class="panel panel-primary">
 <div class="panel-heading">Partidos Grupo A</div>
 <div class="panel-body">
@@ -71,8 +79,12 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
+<div class="row col-wrap">
+<div class="col-sm-9 col">
 <div class="panel panel-success">
 <div class="panel-heading">Grupo B</div>
 <div class="panel-body">
@@ -133,9 +145,14 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
-<div class="panel panel-danger">
+
+<div class="row col-wrap">
+<div class="col-sm-9 col">
+<div class="panel panel-primary">
 <div class="panel-heading">Grupo C</div>
 <div class="panel-body">
 	
@@ -195,9 +212,13 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
-<div class="panel panel-primary">
+<div class="row col-wrap">
+<div class="col-sm-9 col">
+<div class="panel panel-success">
 <div class="panel-heading">Grupo D</div>
 <div class="panel-body">
 	
@@ -257,9 +278,13 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
-<div class="panel panel-success">
+<div class="row col-wrap">
+<div class="col-sm-9 col">
+<div class="panel panel-primary">
 <div class="panel-heading">Grupo E</div>
 <div class="panel-body">
 			
@@ -319,9 +344,13 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
-<div class="panel panel-danger">
+<div class="row col-wrap">
+<div class="col-sm-9 col">
+<div class="panel panel-success">
 <div class="panel-heading">Grupo F</div>
 <div class="panel-body">
 	
@@ -381,10 +410,17 @@
 		<br>
 </div>
 </div>
+</div>
+</div>
 <br>
 
 {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
 <br><br>
+    </fieldset>
+ 
+  
+</div>
+</div></div>
 
 {!!Form::close()!!}
 @stop

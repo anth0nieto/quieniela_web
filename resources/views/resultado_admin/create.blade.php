@@ -4,41 +4,54 @@
 	@include('alerts.request')
 	@include('alerts.success')
 
-{!!Form::open(['route'=>'resultado_A.store','method'=>'POST'])!!}
+<form name="form"  action="{{action('ResultadoAdminController@store')}}" method="POST" >
+				 {!! csrf_field() !!}								
 
 	<?php $contador = 0; ?>
 
 	@foreach($partidos as $partido)
 
-	@if($partido->id_quiniela == $id_quin)
-
 		<?php $contador++; ?>
 		<br><br>
 		<div class="panel panel-primary">
-		<div class="panel-heading">Fecha: <?php echo $partido->fecha ?></div>
+		<div class="panel-heading">Fecha: {{$partido->fecha}}</div>
 		<div class="panel-body">
 
 		<div class="form-inline">
-		<input name="id_partido_<?php echo $contador?>" type="hidden" id="id_partido_<?php echo $contador?>" value=<?php echo $partido->id_partido ?> />
+		<input name="id_partido_{{$contador}}" type="hidden" id="id_partido_{{$contador}}" value="{{$partido->id_partido}}" />
 		{!!Form::label($partido->id_local)!!}
-		{!!Form::text('local_'.$contador,null,['class'=>'form-control','placeholder'=>'Id Local'])!!}
-		&nbsp;&nbsp;&nbsp;
+
+		<?php $partido_aux = DB::table('resultado_admins')
+                            ->where('resultado_admins.id_partido', '=', $partido->id_partido)
+                            ->select('resultado_admins.goles_local','resultado_admins.goles_visitante')
+                            ->get(); ?>
+		
+		@if(!empty($partido_aux)  )
+		<input type="text" name="local_{{$contador}}" placeholder="Id Local" value="{{$partido_aux[0]->goles_local}}" />
+		@else
+		<input type="text" name="local_{{$contador}}" placeholder="Id Local"  />
+		@endif
+		
 		{!!Form::label('VS')!!}
-		&nbsp;&nbsp;&nbsp;
-		{!!Form::text('visitante_'.$contador,null,['class'=>'form-control','placeholder'=>'Id Visitante'])!!}
+
+		@if(!empty($partido_aux) )
+		<input type="text" name="visitante_{{$contador}}" placeholder="Id Visitante" value="{{$partido_aux[0]->goles_visitante}}" /> 
+		@else
+		<input type="text" name="visitante_{{$contador}}" placeholder="Id Visitante"  /> 
+		@endif
+		
 		{!!Form::label($partido->id_visitante)!!}
 		</div>
 		</div>
 		</div>
-	
-		
-	@endif
 	@endforeach
 
-	<input name="contador" type="hidden" id="contador" value=<?php echo $contador ?> />
+	<input name="contador" type="hidden" id="contador" value="{{$contador}}" />
 
-<br><br>
-{!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
+<br>
+<button class="btn btn-primary" value="{{ csrf_token() }}"  aling="center">Actualizar</button>
+</form>
+
 <br><br>
 
 {!!Form::close()!!}

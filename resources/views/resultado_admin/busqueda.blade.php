@@ -12,8 +12,18 @@
 	@include('alerts.request')
 	@include('alerts.success')
 
-	<br><br>
 	<form name="form"  action="{{action('ResultadoAdminController@buscar')}}" method="GET" >
+
+<br>		
+<div class="row col-wrap">
+<div class="col-sm-6 col">
+
+<div class="well">
+ 
+     <fieldset>
+ 
+        <legend>Ingresar Resultado</legend>
+
 
 	<div class="form-inline">
 	<label for="">Fecha a Actualizar: </label>
@@ -22,6 +32,12 @@
 	
 	<br><br>
 	<button class="btn btn-success">Buscar</button>
+	</fieldset>	
+	</div>
+	</div>
+	</div>	
+
+
 	</form>
 
 @stop

@@ -21,19 +21,19 @@
 		
 		@foreach($equipos as $equipo)
 
+		@if($id_quin == $equipo->id_quiniela)
+			<tbody>
+				<td>{{$equipo->id_quiniela}}</td>
+				<td>{{$equipo->id_equipo}}</td>
+				<td>{{$equipo->nombre}}</td>
+				<td>{{$equipo->grupo}}</td>
+				<td>	
 
-		<tbody>
-			<td>{{$equipo->id_quiniela}}</td>
-			<td>{{$equipo->id_equipo}}</td>
-			<td>{{$equipo->nombre}}</td>
-			<td>{{$equipo->grupo}}</td>
-			<td>	
-
-			{!!link_to_route('equipo.edit', $title = 'Editar', $parameters = $equipo->id, $attributes = ['class'=>'btn btn-primary']);!!}
-			
-			</td>
-		</tbody>
-		
+				{!!link_to_route('equipo.edit', $title = 'Editar', $parameters = $equipo->id, $attributes = ['class'=>'btn btn-primary']);!!}
+				
+				</td>
+			</tbody>
+		@endif
 		@endforeach
 
 

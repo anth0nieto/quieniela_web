@@ -15,9 +15,7 @@
 			<th>Id</th>
 			<th>Nombre</th>
 			<th>Fecha Inicio</th>
-			<th>Fecha Oferta</th>
-		
-			<th>Competición</th>
+			<th>Fecha Finalización</th>
 			<th>Costo</th>
 			<th>Operación</th>
 		</thead>
@@ -34,23 +32,16 @@
 			
 
 			</td>
-			<td>{{$quiniela->f_inicio}}</td>
-			<td>{{$quiniela->f_oferta}}</td>
-			
-			<td>{{$quiniela->torneo_liga}}</td>
+			<td>{{$quiniela->fecha_inicio}}</td>
+			<td>{{$quiniela->fecha_finalizacion}}</td>
 			<td>{{$quiniela->costo}}</td>
 			<td>
 			
-		
-			
-		
-
-
 			<ul class="list-inline">
   			
 			<li>
 			{!!Form::open(['route'=>['quiniela.destroy', $quiniela->id], 'method' => 'DELETE'])!!}
-			{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
+			{!!Form::submit('Eliminar',['class'=>'btn btn-danger', 'disabled'=>'true'])!!}
 			{!!Form::close()!!}
 			<li>
 
@@ -59,8 +50,16 @@
 			</li>
 			<li>
 				<form name="form"  action="{{action('EquipoController@constructor')}}" method="GET" >
-				<input name="resultado" type="hidden" id="resultado" size="30" maxlength="10" value=<?php echo $quiniela->id ?>  />		
+				<input name="resultado" type="hidden" id="resultado" size="30" maxlength="10" value=<?php echo $quiniela->id ?>  />
+				{{ session(['idQuin' => $quiniela->id]) }}		
 				<button class="btn btn-success">Gestionar</button>
+				</form>
+			</li>
+			<li>
+				<form name="form"  action="{{action('QuinielaController@finalizar')}}" method="POST" >
+					{!! csrf_field() !!}
+				<input name="quiniela_id" type="hidden" id="quiniela_id"  value="{{$quiniela->id}}"  />	
+				<button class="btn btn-danger" value="{{ csrf_token() }}">Finalizar</button>
 				</form>
 			</li>
 			</ul>
@@ -70,6 +69,7 @@
 
 			</td>
 		</tbody>
+
 		
 		@endforeach
 

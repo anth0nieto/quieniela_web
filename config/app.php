@@ -156,6 +156,8 @@ return [
         quiniela\Providers\EventServiceProvider::class,
         quiniela\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
     ],
 
@@ -204,6 +206,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

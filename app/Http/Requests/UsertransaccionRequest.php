@@ -26,7 +26,7 @@ class UsertransaccionRequest extends Request
         return [
             'tipo_transaccion' => 'required',
             'banco_emisor' => 'required',
-            'nro_cuenta' => 'required',
+            'nro_cuenta' => 'required|digits:20',
             'monto' => 'required',
             'fecha' => 'required',
             'nro_transaccion' => 'required',

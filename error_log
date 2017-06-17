@@ -1,0 +1,9 @@
+[09-Jun-2016 04:03:47 UTC] PHP Fatal error:  Class 'PDO' not found in /home/quinielg/config/database.php on line 16
+[09-Jun-2016 04:03:56 UTC] PHP Fatal error:  Class 'PDO' not found in /home/quinielg/config/database.php on line 16
+[09-Jun-2016 04:04:46 UTC] PHP Fatal error:  Class 'PDO' not found in /home/quinielg/config/database.php on line 16
+[09-Jun-2016 17:36:23 America/Caracas] PHP Fatal error:  Class 'quiniela\Http\Controllers\Redirect' not found in /home/quinielg/app/Http/Controllers/PronosticoController.php on line 112
+[09-Jun-2016 18:42:00 America/Caracas] PHP Fatal error:  Class 'quiniela\Http\Controllers\Redirect' not found in /home/quinielg/app/Http/Controllers/PronosticoController.php on line 112
+[09-Jun-2016 18:42:22 America/Caracas] PHP Fatal error:  Class 'quiniela\Http\Controllers\Redirect' not found in /home/quinielg/app/Http/Controllers/PronosticoController.php on line 112
+[10-Jun-2016 00:24:14 America/Caracas] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 82 bytes) in /home/quinielg/vendor/dompdf/dompdf/include/style.cls.php on line 906
+[10-Jun-2016 00:41:36 America/Caracas] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/quinielg/vendor/dompdf/dompdf/include/style.cls.php on line 1459
+[10-Jun-2016 00:41:59 America/Caracas] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/quinielg/vendor/dompdf/dompdf/include/style.cls.php on line 1443

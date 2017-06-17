@@ -19,6 +19,7 @@ class CreatePronosticosTable extends Migration
             $table->string('goles_local');
             $table->string('goles_visitante');
             $table->string('id_user');
+            $table->integer('fase');
             $table->timestamps();
         });
     }

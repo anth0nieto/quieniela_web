@@ -10,7 +10,9 @@
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="application/x-javascript"> 
+
+addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
@@ -20,7 +22,6 @@
 			<div class="menu">
 				<ul>
 					<li><a class="active" href="{!! URL::to('/') !!}"><i class="home"></i></a></li>
-					<li><a href="{!! URL::to('/showQuinielas') !!}"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
 					<li><a href="{!! URL::to('/contacto') !!}"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
 				</ul>
 			</div>
@@ -62,6 +63,6 @@
 			});
 		</script>
 		<script type="text/javascript" src="js/jquery.flexisel.js"></script>
-	<div class="clearfix"></div>
+	
 </body>
 </html>

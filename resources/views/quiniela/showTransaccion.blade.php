@@ -1,17 +1,16 @@
 @extends('layouts.admin')
 
-@if(Session::has('message'))
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  {{Session::get('message')}}
-</div>
-@endif
 
 
 @section('content')
+
+@include('alerts.success')
+@include('alerts.errors')
+@include('alerts.request')
 	
 	<table class="table">
 		<thead>
+			<th>Id Transacción</th>
 			<th>Id_quiniela</th>
 			<th>Username</th>
 			<th>Tipo Trans.</th>
@@ -24,9 +23,9 @@
 		
 		@foreach($transacciones as $transaccion)
 
-			@if(($transaccion->id_quiniela == $array_value['id_quin']) && ($transaccion->username == $array_value['username']))
+			@if($_GET['id_quin'] == $transaccion->id_quiniela && $_GET['username'] == $transaccion->username)
 				<tbody>
-					
+					<td>{{$transaccion->id}}</td>
 					<td>{{$transaccion->id_quiniela}}</td>
 					<td>{{$transaccion->username}}</td>
 					<td>{{$transaccion->tipo_transaccion}}</td>
@@ -45,7 +44,6 @@
 		
 	</table>
 
-	{!! $transacciones->render() !!}
 
 		
 @stop

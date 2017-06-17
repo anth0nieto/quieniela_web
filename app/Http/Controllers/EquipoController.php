@@ -13,6 +13,9 @@ use quiniela\Equipo;
 use quiniela\Quiniela;
 use DB;
 
+
+
+
 class EquipoController extends Controller
 {
     /**
@@ -20,10 +23,16 @@ class EquipoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   
+        $this->middleware('admin');
+    }
+
     public function index()
     {
          $equipos = Equipo::paginate(1000);
          $id_quin = session()->get('id_q1');
+         
         return view('equipo.index',compact('equipos'), compact('id_quin'));
     }
 
@@ -37,6 +46,33 @@ class EquipoController extends Controller
         //return $request['resultado'];
         $id_quiniela= session()->get('id_q1');
            return view('equipo.create', compact('id_quiniela'));
+    }
+
+    public function create_solo(Request $request)
+    {
+
+        $id_quiniela= session()->get('id_q1');
+           return view('equipo.create_solo', compact('id_quiniela'));
+    }
+
+    public function store_solo(Request $request)
+    {
+        
+        $id_quiniela= session()->get('id_q1');
+        for ($i=1; $i <=5 ; $i++)
+        { 
+           if(!empty($request['id_equipo_'.$i]) and !empty($request['nombre_'.$i]) )
+           {
+                Equipo::create([
+                'id_equipo'=> $request['id_equipo_'.$i],
+                'id_quiniela'=> 0,
+                'nombre'=> $request['nombre_'.$i],
+                ]);
+            
+           }
+        }
+        Session::flash('message','Equipos agregados exitosamente');
+        return Redirect::to('/equipo');
     }
 
     /**
@@ -113,7 +149,6 @@ class EquipoController extends Controller
     {
         $equipo = Equipo::find_equipo($id_equipo);
         $equipo->fill($request->all());
-       
         $equipo->save();
         Session::flash('message','Equipo editado exitosamente');
         return Redirect::to('/equipo');

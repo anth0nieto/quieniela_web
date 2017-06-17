@@ -14,12 +14,15 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'id', 'nombre','apellido', 'cedula', 'fecha_nacimiento', 'username', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $primaryKey = 'username';
+    public $incrementing = false;
 
     public function setPasswordAttribute($valor){
         if(!empty($valor)){

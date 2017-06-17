@@ -22,12 +22,12 @@ class UserRequest extends Request
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required',
+            'telefono' => 'required',
             'fecha_nacimiento' => 'required',
-            'username' => 'required|unique:users',
             'email' => 'required|email',
-            'email' => 'required|unique:users',
+            'email' => 'required|unique:personas',
+            'username' => 'required|unique:users',
             'password' => 'required',
-            
         ];
     }
 }

@@ -1,83 +1,173 @@
-@extends('layouts.quiniela')
+@extends('layouts.user')
 	
-	@section('content')
 
-			
+
+	@section('content')
 	
-				<div class="header">
-					<div class="top-header">
+	
+	
+				
+			
+							
+					<div class="container" >		
+					
 						@include('alerts.success')
 						@include('alerts.errors')
 						@include('alerts.request')
-						<ul class="nav nav-pills" role="tablist">
-  						<li role="presentation"><a href="{!!URL::to('/showQuinielas')!!}">Home<span class="badge"></span></a></li>
-  						<li role="presentation"><a href="">{!! Auth::user()->username !!}</a></li>
-  						<li role="presentation"><a href="#">Messages <span class="badge"></span></a></li>
-  						<li role="presentation"><a href="{!!URL::to('/misQuinielas')!!}">Mis Quinielas<span class="badge"></span></a></li>
-						</ul>
+					</div>
+						
+					@if(Session::has('message'))
+					<div class="alert alert-success alert-dismissible" role="alert">
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					  {{Session::get('message')}}
+					</div>
+					@endif
+					@if(Session::has('error'))
+					<div class="alert alert-danger alert-dismissible" role="alert">
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					  {{Session::get('error')}}
+					</div>
+					@endif
 
-						<div class="logo">
-						<p>Quinielas Disponibles</p>
-							
-							<p align="right">
-								<a href="{!! URL::to('/logout')!!}"><button type="button" class="btn btn-danger">
-  								<span class="glyphicon glyphicon-remove-circle" aria-hidden="true" href="/logout"></span> Salir
-								</button></a></p>
+			
+
+						<?php $user = DB::table('users')->join('personas','personas.email','=','users.email')
+						 								->where('users.email','=', Auth::user()->email)
+														->select('personas.creditoDisponible')
+														->get()?>
+
+						
+						<div class="col-md-12" align = "center">
+						<div class="panel panel-info" style=" border-color:#5cb85c;" >
+							<div class="panel-heading " style="background-color:#5cb85c; border-color:#5cb85c;">
+								<h4 style="color:#fff"><font style="font-family: 'Architects Daughter', cursive;" color="#fff" size="5">¡¿ Cómo Jugar ?!</font></h4>
+							</div>
+						<div class="panel-body" style="padding:0px;">
+						
+						
+
+
+		
+		<div class="col-md-12" align = "center" style="padding-right: 0px; padding-left: 0px;">
+		<div class="table-responsive" style="width:100%">
+  		<table class="table">
+		
+		<thead>
+		<tr align="center" class="info">
+		</tr>
+		</thead>
 
 							
+
+				<tbody align="center">
+				<td>
+					<div class = "container">
+						
+						<div class="col-md-12">
 							
-							
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+								    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+								    <li data-target="#carousel-example-generic" data-slide-to="7"></li>
+								  </ol>
+
+								  <!-- Wrapper for slides -->
+								  <div class="carousel-inner" role="listbox">
+								    <div class="item active">
+								      <img src="../images/paso1.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+								    <div class="item">
+								      <img src="../images/paso2.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso3.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso4.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso5.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso6.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso7.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+
+								    <div class="item">
+								      <img src="../images/paso8.png" alt="..." class="img-responsive">
+								      <div class="carousel-caption hidden-xs hidden-sm">
+								        
+								      </div>
+								    </div>
+								    
+								  </div>
+							</div>
 						</div>
 
-		
-
-		<table class="table">
-		<thead>
-			<th>Nombre</th>
-			<th>Costo</th>
-			<th>F. Inicio</th>
-			<th>Torneo</th>
-			<th>Acción</th>
-		</thead>
-		
-		@foreach($quinielas as $quiniela)
-			
-			@if(date("Y-m-d") == $quiniela->f_oferta)
-				<tbody>
-				<td>{{$quiniela->nombre}}</td>
-				<td>{{$quiniela->costo}}</td>
-				<td>{{$quiniela->f_inscripcion}}</td>
-				<td>{{$quiniela->torneo_liga}}</td>
-				
-				
-				
-				<td>{!!link_to_route('quiniela.show', $title = 'Inscribir', $parameters = $quiniela->id, $attributes = ['class'=>'btn btn-success'])!!}</td>
-				
-				
-				</tbody>
-
-			@endif
-
-		@endforeach
-		
-		</table>
-
-		{!!$quinielas->render()!!}
-				
-				
+						<!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 					</div>
-			
-				</div>
+						
+				</td>
+				</tbody>
+	
+		</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+		
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-		<div class="review-slider">
-			 <ul id="flexiselDemo1">
-			<li><img src="images/g11.jpg" alt=""/></li>
-			<li><img src="images/e3.jpg" alt=""/></li>
-			<li><img src="images/g6.jpg" alt=""/></li>
-			<li><img src="images/g4.jpg" alt=""/></li>
-			<li><img src="images/e1.jpg" alt=""/></li>
-			<li><img src="images/g2.jpg" alt=""/></li>
-		</ul>
-			
-		</div>
+<script>
+    $('.carousel').carousel({
+  interval: 7000
+})
+
+     $('.carousel').carousel('cycle')
+</script>
 	@endsection

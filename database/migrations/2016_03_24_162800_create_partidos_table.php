@@ -18,6 +18,8 @@ class CreatePartidosTable extends Migration
             $table->string('id_quiniela');
             $table->string('id_local');
             $table->string('id_visitante');
+            $table->string('nom_local');
+            $table->string('nom_visitante');
             $table->date('fecha');
             $table->boolean('fase_grupo');
             $table->timestamps();

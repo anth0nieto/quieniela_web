@@ -16,13 +16,13 @@ class CreateQuinielasTable extends Migration
         Schema::create('quinielas', function (Blueprint $table) {
           $table->increments('id')->unique();
           $table->string('nombre');
+          $table->string('tipo_quiniela');
           $table->float('costo');
           $table->integer('usuarios');
           $table->integer('ganadores');
-          $table->date('f_inicio');
-          $table->date('f_oferta');
-          $table->date('f_inscripcion');
-          $table->string('torneo_liga');
+          $table->date('fecha_inicio');
+          $table->date('fecha_finalizacion');
+          $table->integer('finalizado')->default(0);
           $table->rememberToken();
           $table->timestamps();
         });

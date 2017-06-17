@@ -1,5 +1,7 @@
-	<div class="panel-body">
+<div class="row col-wrap">
+<div class="col-sm-6 col">
 
+	<div class="panel-body">
 	<form class="form-inline" role="form">
 		<div class="form-group">
 			{!!Form::label('Id:')!!}
@@ -12,5 +14,8 @@
 	</form>
 	</div>
 
+</div>
+</div>
 
-	
+
+

@@ -9,30 +9,35 @@
 @endif
 
 @section('content')
-	
+
+	<form name="form" action= "/verQuiniela" method="GET" >
+           {!! csrf_field() !!}
+    <input name="id" type="hidden"  value="1" />
+	<button class="btn btn-primary" value="{{ csrf_token() }}">Ver Posiciones</button>
+
+	</form>
 	<table class="table">
 		<thead>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Cedula</th>
 			<th>Username</th>
-			<<th>Operacion</th>
+			<th>Nro de Empleado</th>
+			
 		</thead>
 		
 		@foreach($admins as $admin)
 
 		<tbody>
-			<td>{{$admin->nombre}}</td>
-			<td>{{$admin->apellido}}</td>
-			<td>{{$admin->cedula}}</td>
 			<td>{{$admin->username}}</td>
-			<td>{!!link_to_route('admin.edit', $title = 'Editar', $parameters = $admin->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
+			<td>{{$admin->numeroEmpleado}}</td>
+			
 		</tbody>
 		
 		@endforeach
 		
 	</table>
-
+	
+	
+	
+	 
 		{!!$admins->render()!!}
 	
 @stop

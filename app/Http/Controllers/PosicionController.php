@@ -17,10 +17,17 @@ class PosicionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   
+       $this->middleware('admin');
+    }
+  
     public function index()
     {
-        
+        $id_quin = session()->get('id_q1');
+
         $puntuaciones = DB::table('puntuaciones')->join('user_quinielas','puntuaciones.id_user','=','user_quinielas.id')
+                                            ->where('puntuaciones.id_quiniela',$id_quin)
                                             ->select('user_quinielas.username','puntuaciones.ptos','puntuaciones.ganadores','puntuaciones.resultados')
                                             ->orderBy('puntuaciones.ptos', 'desc')
                                             ->get();
@@ -84,7 +91,9 @@ class PosicionController extends Controller
                     ->where('resultado_admins.id_quiniela', '=', $id_quin)
                     ->select('partidos.id_partido','partidos.fecha','resultado_admins.goles_local','resultado_admins.goles_visitante')
                     ->orderBy('partidos.fecha')
+                    ->orderBy('partidos.id_partido','asc')
                     ->get();
+
 
         $usuarios = DB::table('puntuaciones')
                     ->where('puntuaciones.id_quiniela', '=', $id_quin)
@@ -92,67 +101,115 @@ class PosicionController extends Controller
                     ->get();
 
 
+        
         foreach($usuarios as $usuario)
         {
+            $user = DB::table('user_quinielas')->where('id','=',$usuario->id_user)->first();
+
             $pronosticos = DB::table('pronosticos')
                     ->join('partidos','pronosticos.id_partido','=','partidos.id_partido')
                     ->where('partidos.fecha', '<=', $date)
-                    ->where('pronosticos.id_quiniela', '=', $id_quin)
+                    ->where('pronosticos.id_quiniela', '=', $user->id_quiniela)
                     ->where('pronosticos.id_user', '=', $usuario->id_user)
                     ->select('partidos.id_partido','partidos.fecha','pronosticos.goles_local','pronosticos.goles_visitante')
                     ->orderBy('partidos.fecha')
+                    ->orderBy('partidos.id_partido','asc')
                     ->get();
 
-                
-
-
+            $i = 0;
             $co = 0;
-
-             $usr_resultado = 0;
+            $usr_resultado = 0;
             $usr_ganadores = 0;
-
-            foreach($pronosticos as $pronostico)   
+            $foo = FALSE;
+            foreach($resultados as $resultado)   
             {   
-
-
-            
-
-                    if((int)$pronostico->goles_local == (int)$resultados[$co]->goles_local and
-                        (int)$pronostico->goles_visitante == (int)$resultados[$co]->goles_visitante)        
+                    $co = 0;
+                    foreach($pronosticos as $pronostico)
                     {
-                       $usr_resultado++;
+                        if($pronostico->id_partido == $resultado->id_partido)
+                            break;
+
+                        $co++;  
+                    }
+                    /*if((int)$pronosticos[$co]->goles_local == (int)$resultado->goles_local &&                                  (int)$pronosticos[$co]->goles_visitante == (int)$resultado->goles_visitante)
+                    {
+                        $usr_resultado++;
                     }
 
-                    if((int)$pronostico->goles_local < (int)$pronostico->goles_visitante and
-                        (int)$resultados[$co]->goles_local < (int)$resultados[$co]->goles_visitante)        
+                    if((int)$pronosticos[$co]->goles_local > (int)$pronosticos[$co]->goles_visitante &&                        (int)$resultado->goles_local > (int)$resultado->goles_visitante)
                     {
-                       $usr_ganadores++; 
+                        $usr_ganadores++;
                     }
 
-
-                    if((int)$pronostico->goles_local > (int)$pronostico->goles_visitante and
-                       (int)$resultados[$co]->goles_local > (int)$resultados[$co]->goles_visitante)        
+                    if((int)$pronosticos[$co]->goles_local < (int)$pronosticos[$co]->goles_visitante &&                        (int)$resultado->goles_local < (int)$resultado->goles_visitante)
                     {
-                       $usr_ganadores++;
+                        $usr_ganadores++;
                     }
 
-
-                    if((int)$pronostico->goles_local == (int)$pronostico->goles_visitante and
-                       (int)$resultados[$co]->goles_local == (int)$resultados[$co]->goles_visitante)        
+                    if((int)$pronosticos[$co]->goles_local == (int)$pronosticos[$co]->goles_visitante &&                       (int)$resultado->goles_local == (int)$resultado->goles_visitante)
                     {
-                       $usr_ganadores++; 
+                        $usr_ganadores++;
+                    }*/
+
+                    if($foo == FALSE)
+                    {
+                        if((int)$pronosticos[$co]->goles_local == (int)$pronosticos[$co]->goles_visitante &&
+                        (int)$resultado->goles_local == (int)$resultado->goles_visitante)
+                        {
+                            $usr_ganadores++;
+                            if((int)$pronosticos[$co]->goles_local == (int)$resultado->goles_local &&
+                                (int)$pronosticos[$co]->goles_visitante == (int)$resultado->goles_visitante)
+                            {
+                                $usr_resultado++;
+                                $foo = TRUE;
+                            }
+                            $foo = TRUE;
+                        }
                     }
+
+                    if($foo == FALSE)
+                    {
+                        if((int)$pronosticos[$co]->goles_local < (int)$pronosticos[$co]->goles_visitante &&
+                            (int)$resultado->goles_local < (int)$resultado->goles_visitante)
+                        {
+                            $usr_ganadores++;
+                            if((int)$pronosticos[$co]->goles_local == (int)$resultado->goles_local &&
+                                (int)$pronosticos[$co]->goles_visitante == (int)$resultado->goles_visitante)
+                            {
+                                $usr_resultado++;
+                                $foo = TRUE;
+                            }
+                            $foo = TRUE;
+                        }
+                    }
+
+                    if($foo == FALSE)
+                    {
+                        if((int)$pronosticos[$co]->goles_local > (int)$pronosticos[$co]->goles_visitante &&                        (int)$resultado->goles_local > (int)$resultado->goles_visitante)
+                        {
+                            $usr_ganadores++;
+                            if((int)$pronosticos[$co]->goles_local == (int)$resultado->goles_local &&
+                                (int)$pronosticos[$co]->goles_visitante == (int)$resultado->goles_visitante)
+                            {
+                                $usr_resultado++;
+                                $foo = TRUE;
+                            }   
+                            $foo = TRUE;
+                        }
+                    } 
 
                     DB::table('puntuaciones')->where('id_user', $usuario->id_user)
                             ->update(['ptos'=> ($usr_ganadores*2) + ($usr_resultado*3),
                                       'ganadores'=> $usr_ganadores,
                                       'resultados'=> $usr_resultado]);
 
+                    /*DB::table('puntuaciones')->where('id_user', $usuario->id_user)
+                            ->update(['ptos'=> (0*2) + (0*3),
+                                      'ganadores'=> 0,
+                                      'resultados'=> 0]);*/
+
                     $co++;
-
-
-                
-
+                    $foo = FALSE;
             }   
 
 

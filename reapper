@@ -1,0 +1,85 @@
+@extends('layouts.principal')
+	
+	@section('content')
+	
+	<script src="js/modernizr.custom.js"></script>
+	
+			
+	<div class="header">
+				
+		<div class="top-header">
+
+			<div class="logo">
+				<p><font color="#585858">Tu Quiniela Ganadora</font></p>
+			</div>
+				
+			<div class="form-group">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<br><br>	
+			</div>
+		</div>
+
+
+		<div class="header-info">
+		<div class="row col-wrap">
+		<div class="col-sm-20 col">
+		<div class="well">
+
+			<h2><font color="#585858">Comienza a ganar</font></h2>
+			<br><br>
+				
+			{!!Form::open(['route'=>'log.store','method'=>'POST'])!!}
+	
+				<div>
+				@include('alerts.success')
+				@include('alerts.errors')
+				@include('alerts.request')
+				</div>
+
+				<div class="panel panel-success">
+					<div class="panel-heading">Inicio de Sesión</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<h4><font color = "#585858">Username:</font></h4>
+							{!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'Ingresa el Username'])!!}
+						</div>
+
+						<div class="form-group">
+							<h4><font color = "#585858">Password:</font></h4>
+							{!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Ingresa la contraseña'])!!}
+						</div>
+
+							{!!Form::submit('Ingresar',['class'=>'btn btn-success'])!!}
+					</div>
+					</div>	
+
+					<br>
+						<h3><font color = "#585858">¿No Posees Cuenta?</font></h3>
+					<br>
+					
+					{!!link_to_route('user.create', $title = '¡Registrate Ya!', $parameters = null, $attributes = ['class'=>'btn btn-info'])!!}
+					<br><br>
+					{!!link_to('reset/Password', $title = 'Olvidaste tu contraseña?', $attributes = null, $secure = null)!!}
+					
+					{!!Form::close()!!}
+				</div>	
+			
+		</div>
+		</div>	
+		</div>
+		</div>
+		
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
+		<script src="js/jquery.imagesloaded.min.js"></script>
+		<script src="js/cbpBGSlideshow.min.js"></script>
+		<script>
+			$(function() {
+				cbpBGSlideshow.init();
+			});
+		</script>
+	
+	
+		@endsection
